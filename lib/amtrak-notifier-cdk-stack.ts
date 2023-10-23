@@ -12,17 +12,17 @@ export class AmtrakNotifierCdkStack extends cdk.Stack {
     super(scope, id, props);
 
     const topic = new Topic(this, 'train171Topic', {
-      displayName: 'Amtrak Northeast Regional 171 has departed New Carrollton',
+      displayName: 'Amtrak Departure Notification'
     });
 
-    const trackerFunction = new NodejsFunction(this, 'checkTrain171StatusLambdaFunction', {
+    const trackerFunction = new NodejsFunction(this, 'checkAmtrakStatusLambdaFunction', {
       entry: 'lambda/amtrak-notifier-lambda.ts',
       handler: 'checkAmtrakStatus',
       runtime: Runtime.NODEJS_LATEST
     });
 
     trackerFunction.addToRolePolicy(new PolicyStatement({
-      actions: ['SNS:Publish'],
+      actions: ['SNS:Publish', 'SSM:GetParameter', 'SSM:PutParameter'],
       resources: ['*'],
     }));
 
