@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/amtrak_notifier_cdk.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/amtrak-notifier-cdk.ts",
   "watch": {
     "include": [
       "**"

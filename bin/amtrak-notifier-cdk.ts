@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { AmtrakNotifierCdkStack } from '../lib/amtrak_notifier_cdk-stack';
+import { AmtrakNotifierCdkStack } from '../lib/amtrak-notifier-cdk-stack';
 
 const app = new cdk.App();
 new AmtrakNotifierCdkStack(app, 'AmtrakNotifierCdkStack', {
