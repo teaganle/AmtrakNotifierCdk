@@ -11,7 +11,8 @@ export const checkAmtrakStatus: Handler = async (event: ScheduledEvent) => {
     const topicArn = event.detail['topicArn'];
 
     console.log(`Getting station ${station}...`);
-    const trainId = await fetchStation(station).then(stationHandler.bind(null, train, station));
+    const response = await fetchStation(station);
+    const trainId = await stationHandler(train, station, response);
 
     if (!trainId) {
         return {
