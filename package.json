@@ -1,0 +1,33 @@
+{
+  "name": "amtrak-notifier-cdk",
+  "version": "0.1.0",
+  "bin": {
+    "amtrak-notifier-cdk": "bin/amtrak-notifier-cdk.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.125",
+    "@types/jest": "^29.5.5",
+    "@types/node": "20.7.1",
+    "aws-cdk": "2.101.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.2.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sns": "^3.428.0",
+    "@aws-sdk/client-sqs": "^3.433.0",
+    "@aws-sdk/client-ssm": "^3.433.0",
+    "amtrak": "^3.0.5",
+    "aws-cdk-lib": "2.101.0",
+    "constructs": "^10.0.0",
+    "package.json": "^2.0.1",
+    "source-map-support": "^0.5.21"
+  }
+}
