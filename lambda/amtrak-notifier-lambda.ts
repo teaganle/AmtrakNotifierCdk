@@ -28,7 +28,7 @@ export const checkAmtrakStatus: Handler = async (event: ScheduledEvent) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: `Already posted to SNS for train ${train} today`,
+                message: `Already posted to SNS for train ${trainId} today`,
             }),
         };
     } else {
