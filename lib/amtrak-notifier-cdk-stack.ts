@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Schedule, Rule, RuleTargetInput, EventField } from 'aws-cdk-lib/aws-events';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Topic } from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
@@ -29,15 +29,15 @@ export class AmtrakNotifierCdkStack extends cdk.Stack {
     const scheduleRule = new Rule(this, 'train171Rule', {
       schedule: Schedule.cron(
         {
-          minute: "0/5", hour: "19-0", month: "*", weekDay: "Thursday", year: "*"
+          minute: "0/5", hour: "19-23", month: "*", weekDay: "Thursday", year: "*"
         }
       )
     });
 
     scheduleRule.addTarget(new LambdaFunction(trackerFunction, {
       retryAttempts: 2,
-      event: RuleTargetInput.fromObject(
-        { time: EventField.fromPath('$.time'), train: '171', station: 'NCR', topicArn: topic.topicArn }
+      event: RuleTargetInput.fromText(
+        `{ "time": "${EventField.time}", "train": "171", "station": "NCR", "topicArn": "${topic.topicArn}" }`
       )
     }));
 

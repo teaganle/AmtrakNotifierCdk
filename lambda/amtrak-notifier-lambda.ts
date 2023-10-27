@@ -6,9 +6,9 @@ import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { GetParameterCommand, ParameterType, PutParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 
 export const checkAmtrakStatus: Handler = async (event: ScheduleEvent) => {
-    const train = event.detail.train;
-    const station = event.detail.station;
-    const topicArn = event.detail.topicArn;
+    const train = event.train;
+    const station = event.station;
+    const topicArn = event.topicArn;
 
     console.log(`Getting station ${station}...`);
     const response = await fetchStation(station);
