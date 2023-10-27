@@ -1,14 +1,14 @@
 import { fetchStation, fetchTrain } from "amtrak";
 import { StationResponse, StationStatus, TrainResponse } from "amtrak/dist/types";
 import { Handler } from 'aws-cdk-lib/aws-lambda';
-import { ScheduledEvent } from 'aws-lambda';
+import { ScheduleEvent } from "./schedule-event";
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { GetParameterCommand, ParameterType, PutParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 
-export const checkAmtrakStatus: Handler = async (event: ScheduledEvent) => {
-    const train = event.detail['train'];
-    const station = event.detail['station'];
-    const topicArn = event.detail['topicArn'];
+export const checkAmtrakStatus: Handler = async (event: ScheduleEvent) => {
+    const train = event.detail.train;
+    const station = event.detail.station;
+    const topicArn = event.detail.topicArn;
 
     console.log(`Getting station ${station}...`);
     const response = await fetchStation(station);
