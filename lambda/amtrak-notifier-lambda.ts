@@ -18,7 +18,7 @@ export const checkAmtrakStatus: Handler = async (event: ScheduleEvent) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: `Could not find train ${train} arriving at ${station} on ${event.time}`,
+                message: `Could not find train ${train} arriving at ${station} on ${Date.now()}`,
             }),
         };
     }

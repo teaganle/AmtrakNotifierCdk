@@ -8,7 +8,6 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface ScheduleEvent {
-    time:     Date;
     train:    string;
     station:  string;
     topicArn: string;
@@ -180,7 +179,6 @@ function r(name: string) {
 
 const typeMap: any = {
     "ScheduleEvent": o([
-        { json: "time", js: "time", typ: Date },
         { json: "train", js: "train", typ: "" },
         { json: "station", js: "station", typ: "" },
         { json: "topicArn", js: "topicArn", typ: "" },

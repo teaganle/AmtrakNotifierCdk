@@ -36,8 +36,12 @@ export class AmtrakNotifierCdkStack extends cdk.Stack {
 
     scheduleRule.addTarget(new LambdaFunction(trackerFunction, {
       retryAttempts: 2,
-      event: RuleTargetInput.fromText(
-        `{ "time": "${EventField.time}", "train": "171", "station": "NCR", "topicArn": "${topic.topicArn}" }`
+      event: RuleTargetInput.fromObject(
+        {
+          "train": "171",
+          "station": "NCR",
+          "topicArn": `${topic.topicArn}`
+        }
       )
     }));
 
